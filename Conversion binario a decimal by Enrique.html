@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UFT-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Luis Enrique Pérez CONVERSOR DECIMAL A BINARIO</title>
+    </head>
+    <body>
+        <div class="container">
+            <script>
+                //Declaramos las variables
+                var binarioIngresado =''
+                var tamanioBinario
+                var verificacionDeEntrada=0
+                var decimal
+                var posicion
+                var numeroBinario
+                //Creamos un formulario para ingresar el número en binario
+                binarioIngresado=prompt("PROGRAMA QUE TRANSFORMA DE BINARIO A DECIMAL \n<Ingrese el número en binario(solo 1 o 0)>")
+                //Calculmos el tamaño del binario con la función length
+                tamanioBinario=binarioIngresado.length
+                //Crearemos un for para realizar un conteo de los números que contiene el binario
+                //Para comprobar que todos los números que tiene el binario sean solo 1 o 0
+                for(contador=0;contador<tamanioBinario;contador++){
+                    if(binarioIngresado.charAt(contador)==1){
+                        verificacionDeEntrada=verificacionDeEntrada+1
+                    }else if(binarioIngresado.charAt(contador)==0){
+                        verificacionDeEntrada=verificacionDeEntrada+1
+                    }
+                }
+                
+                //Creamos una condicional si todos los números del binario son 0 o 1
+                if(tamanioBinario==verificacionDeEntrada){
+                    
+                    //Creamos la función conversion que se encargará de convertir un número binario a un número decimal
+                    function conversion (sumador, numeroBinario,posicion,tamanioDelBinario){
+                        
+                        //La variable sumador ira acumulando los valores que da cada número binario (0 o 1) multiplicado por 2 elevado a la posición
+                        //La función charAt extrae el valor de izquierda a derecha, por lo que cambiamos la posición incial por la final
+                        sumador=(parseInt(numeroBinario.charAt((tamanioDelBinario-1)-posicion))*(Math.pow(2,posicion))+sumador)
+                        
+                        //Creamos una condicional donde nos dice que si la posición no ha recorrido todos los valores aún se repite
+                        if(posicion<tamanioDelBinario-1){
+                            conversion(sumador,numeroBinario,posicion+1,tamanioDelBinario)
+                        }
+                        
+                        //En el caso de que la posición sea un número menor al tamanio del binario, esto porque el lenght no cuenta el 0 pero el charAt si lo cuenta
+                         //entonces la posición empezará en 0 mientras que tamanioBinario no lo tiene, entonces cuando solo falte 1 número entre estos se cerrará 
+                         //la función recursiva
+                        else if(posicion<tamanioBinario){
+                            
+                            //Pasamos todos los datos sumados del sumador a la variable decimal e imprimimos los resultados mediante html
+                            decimal=sumador
+                            document.write("<h1>TRANSFORMADOR DE BINARIO A DECIMAL BY ENRIQUE PÉREZ</h1>")
+                            document.write("<h2>Numero binario ingresado:</h2>",binarioIngresado)
+                            document.write("<br><h1>RESULTADO:</h1>")
+                            document.write("<h2>Numero decimal resultante: </h2>",decimal)
+                        }
+                    }
+                    
+                    //Aquí inicializamos la función recursiva
+                    decimal=parseInt(conversion(0,binarioIngresado,0,tamanioBinario))
+                }//En el caso de que la verificación sea erronea y los datos no sean ni 1 ni 0 entonces imprimirá este mensaje
+                else{
+                    document.write("<h1>TRANSFORMADOR DE BINARIO A DECIMAL BY ENRIQUE PÉREZ</h1>")
+                    document.write("<h2>Los datos ingresados son erroneos, por favor recarga la página y vuelva a ingresar</h2>")
+                }
+            </script>
+            <a href="./index.html"><h2>Regresar el Menu Principal</h2></a>
+        </div>
+    </body>
+</html>

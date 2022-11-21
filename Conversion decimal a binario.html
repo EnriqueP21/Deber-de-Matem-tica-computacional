@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UFT-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Luis Enrique Pérez CONVERSOR BINARIO A DECIMAL</title>
+    </head>
+    <body>
+        <div class="container">
+            <script>
+                //Declaramos las variables
+                var decimalIngresado
+                var numeroBinario=''
+                var decimalCambiante
+                var tamanioBinario
+                var numeroBinarioTemporal
+                var verificacionDeEntrada=0
+                var tamanioDecimal
+                //Creamos el ingreso del decimal por medio de un formulario en html para ingresar datos
+                decimalIngresado=(prompt("PROGRAMA QUE TRANSFORMA DE DECIMAL A BINARIO \n<Ingrese el número en decimal(nada de signos ni letras)>"))
+                //Llenamos el taminio con la función lenght sobre la variable que tiene el decimal
+                tamanioDecimal=decimalIngresado.length
+                //Verificamos si todos los datos ingresados por medio del formulario sean números
+                for(contador=0;contador<tamanioDecimal;contador++){
+                    if(decimalIngresado.charAt(contador)==0|decimalIngresado.charAt(contador)==1|decimalIngresado.charAt(contador)==2|decimalIngresado.charAt(contador)==3|decimalIngresado.charAt(contador)==4|decimalIngresado.charAt(contador)==5|decimalIngresado.charAt(contador)==6|decimalIngresado.charAt(contador)==7|decimalIngresado.charAt(contador)==8|decimalIngresado.charAt(contador)==9){
+                        verificacionDeEntrada=verificacionDeEntrada+1
+                    }
+                }
+                //Convertimos los datos del decimal ingresado en Enteros
+                decimalIngresado=parseInt(decimalIngresado)
+                decimalCambiante=decimalIngresado
+                //Utilizamos la condicional para verificar que todos los datos ingresados sean números
+                if(verificacionDeEntrada==tamanioDecimal){
+                    //Creamos un número repetitivo que se detendrá cuando el cociente de la división de la variable decimalCambiante = 0 al dividir para 2
+                    while(parseInt(decimalCambiante/2)!=0){
+                        //Creamos un string donde se aloje el residuo del número decimalCambiante dividido para 2 transformado a String 
+                        numeroBinarioTemporal=((decimalCambiante%2).toString())
+                        //Agregamos el número que nos dió a la variable numeroBinario
+                        numeroBinario=numeroBinarioTemporal+numeroBinario
+                        //a la variable decimalCambiante la remplazamos por su cociente redondeado, así sucesivamente hasta que el cociente sea 0
+                        decimalCambiante=parseInt(decimalCambiante/2)
+                    }
+                    //Cuando el cociente sea 0 significa que ha llegado al último número, entonces para extraer el último digito del binario hacemos lo mismo que antes.
+                    numeroBinarioTemporal=((decimalCambiante%2).toString()) 
+                    numeroBinario=numeroBinarioTemporal+numeroBinario
+                    //Imprimos por html el decimal ingresado y el numero binario resultante
+                    document.write("<h1>TRANSFORMADOR DE DECIMAL A BINARIO BY ENRIQUE PÉREZ</h1>")
+                    document.write("<h2>Numero decimal ingresado:</h2>",decimalIngresado)
+                    document.write("<br><h1>RESULTADO:</h1>")
+                    document.write("<h2>Numero binario resultante: </h2>",numeroBinario)
+                }else{
+                    //En el caso de que no todos los datos del decimal sean números mandará el siguiente mensaje
+                document.write("<h1>TRANSFORMADOR DE DECIMAL A BINARIO BY ENRIQUE PÉREZ</h1>")
+                document.write("<h2>Los datos ingresados son erroneos, por favor recarga la página y vuelva a ingresar</h2>")
+                }
+                </script>
+            <a href="./index.html"><h2>Regresar el Menu Principal</h2></a>
+        </div>
+    </body>
+</html>
+    
